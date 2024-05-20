@@ -1,6 +1,9 @@
+import { RouterProvider } from 'react-router-dom';
+
+import router from './router';
+
 const App = () => {
-  return (
-    <h1>Jobify App</h1>
-  )
-}
-export default App
+  return <RouterProvider router={router}/>;
+};
+
+export default App;
