@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-
 import { FaAlignLeft } from 'react-icons/fa';
-import Logo from '../layout/Logo';
+
+import { Logo } from '../../components';
 import { useDashboardContext } from '../../screens/layout/Dashboard';
 
 const Navbar = () => {
