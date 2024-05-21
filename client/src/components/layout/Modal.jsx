@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
 
 import { Logo, NavLinks } from '../../components';
-import { useDashboardContext } from '../../screens/layout/Dashboard';
+import { useDashboardContext } from '../../hooks';
 
 const Modal = () => {
   const { showSidebar, toggleSidebar } = useDashboardContext();

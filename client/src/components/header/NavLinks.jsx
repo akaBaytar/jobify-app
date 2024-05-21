@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { LINKS } from '../../utilities/Links';
-import { useDashboardContext } from '../../screens/layout/Dashboard';
+import { useDashboardContext } from '../../hooks';
 
 const NavLinks = ({ sidebar }) => {
   const { toggleSidebar } = useDashboardContext();

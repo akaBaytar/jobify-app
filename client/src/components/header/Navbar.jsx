@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FaAlignLeft } from 'react-icons/fa';
 
 import { Logo, Logout,Theme } from '../../components';
-import { useDashboardContext } from '../../screens/layout/Dashboard';
+import { useDashboardContext } from '../../hooks';
 
 const Navbar = () => {
   const { toggleSidebar } = useDashboardContext();

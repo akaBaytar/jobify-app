@@ -1,21 +1,25 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import { Modal, Sidebar, Navbar } from '../../components';
+import  {checkDefaultTheme}  from '../../utilities/darkTheme';
 
-const DashboardContext = createContext();
+export const DashboardContext = createContext();
 
 const Dashboard = () => {
-  // mock data - todo: delete after
   const user = { name: 'burak' };
 
   const [showSidebar, setShowSidebar] = useState(false);
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(checkDefaultTheme());
 
   const toggleDarkTheme = () => {
-    console.log('dark theme');
+    const dark = !darkTheme;
+
+    setDarkTheme(dark);
+
+    localStorage.setItem('darkTheme', dark);
   };
 
   const toggleSidebar = () => {
@@ -74,7 +78,5 @@ const Wrapper = styled.section`
     }
   }
 `;
-
-export const useDashboardContext = () => useContext(DashboardContext);
 
 export default Dashboard;

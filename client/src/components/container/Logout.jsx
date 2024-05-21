@@ -4,7 +4,7 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 
 import styled from 'styled-components';
 
-import { useDashboardContext } from '../../screens/layout/Dashboard';
+import { useDashboardContext } from '../../hooks';
 
 const Logout = () => {
   const [showLogout, setShowLogout] = useState(false);
@@ -41,14 +41,11 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+    color: var(--white);
+    background-color: var(--primary-500);
 
     & span {
       font-size: 0.9rem;
-    }
-
-    &:hover {
-      color: var(--white);
-      background-color: var(--primary-500);
     }
   }
 
