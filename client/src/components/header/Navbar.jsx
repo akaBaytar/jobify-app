@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaAlignLeft } from 'react-icons/fa';
 
-import { Logo, Logout } from '../../components';
+import { Logo, Logout,Theme } from '../../components';
 import { useDashboardContext } from '../../screens/layout/Dashboard';
 
 const Navbar = () => {
@@ -18,6 +18,7 @@ const Navbar = () => {
           <h4>Dashboard</h4>
         </div>
         <div className='button-container'>
+          <Theme/>
           <Logout />
         </div>
       </div>
