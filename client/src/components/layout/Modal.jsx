@@ -32,6 +32,11 @@ const Wrapper = styled.aside`
     display: none;
   }
 
+  .logo {
+    width: 100px;
+    object-fit: contain;
+  }
+
   .modal-container {
     position: fixed;
     inset: 0;
@@ -76,6 +81,7 @@ const Wrapper = styled.aside`
 
   .nav-links {
     padding-block-start: 2rem;
+    padding-inline-start: 0.5rem;
     display: flex;
     flex-direction: column;
   }

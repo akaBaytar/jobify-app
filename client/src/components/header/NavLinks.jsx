@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { LINKS } from '../../utilities/Links';
 import { useDashboardContext } from '../../screens/layout/Dashboard';
 
-const NavLinks = () => {
+const NavLinks = ({ sidebar }) => {
   const { toggleSidebar } = useDashboardContext();
 
   return (
@@ -13,7 +14,7 @@ const NavLinks = () => {
           to={path}
           key={text}
           className={'nav-link'}
-          onClick={toggleSidebar}
+          onClick={sidebar ? null : toggleSidebar}
           end>
           <span className='icon'>{icon}</span>
           {text}
@@ -21,5 +22,9 @@ const NavLinks = () => {
       ))}
     </div>
   );
+};
+
+NavLinks.propTypes = {
+  sidebar: PropTypes.bool,
 };
 export default NavLinks;
