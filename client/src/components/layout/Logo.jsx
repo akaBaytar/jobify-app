@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LOGO from '../../assets/images/logo.png';
 
 const Logo = () => {
-  return <Image src={LOGO} alt='Jobify - Job Tracker App' />;
+  return <Image src={LOGO} alt='Jobify - Job Tracker App' className='logo'/>;
 };
 
 const Image = styled.img`
