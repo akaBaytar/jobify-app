@@ -8,6 +8,7 @@ import morgan from 'morgan';
 
 import { connectDB } from './database/connectDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import job from './router/job.js';
 
 // initilize server
 const server = express();
@@ -18,6 +19,9 @@ connectDB();
 // middlewares
 if (process.env.NODE_ENV === 'development') server.use(morgan('dev'));
 server.use(express.json());
+
+// routes
+server.use('/api/v1/jobs', job);
 
 // error handler
 server.use(errorHandler);
