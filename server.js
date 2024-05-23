@@ -1,10 +1,7 @@
-// env variables
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 // all imports
 import express from 'express';
 import morgan from 'morgan';
+import 'express-async-errors';
 
 import { connectDB } from './database/connectDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
@@ -27,5 +24,5 @@ server.use('/api/v1/jobs', job);
 server.use(errorHandler);
 
 // setup port
-const port = process.env.PORT || 5100;
+const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`Server is running on port ${port}.`));
