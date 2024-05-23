@@ -7,6 +7,7 @@ import express from 'express';
 import morgan from 'morgan';
 
 import { connectDB } from './database/connectDB.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 // initilize server
 const server = express();
@@ -17,6 +18,9 @@ connectDB();
 // middlewares
 if (process.env.NODE_ENV === 'development') server.use(morgan('dev'));
 server.use(express.json());
+
+// error handler
+server.use(errorHandler);
 
 // setup port
 const port = process.env.PORT || 5100;
