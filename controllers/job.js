@@ -1,7 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-
 import Job from '../models/job.js';
-import { NotFound } from '../error/NotFound.js';
 
 // POST
 // api/v1/jobs
@@ -22,7 +20,7 @@ const getAllJobs = async (req, res) => {
 const getJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findById(id);
-  if (!job) throw new NotFound(`There is no job with id ${id}.`);
+
   res.status(StatusCodes.OK).json({ job });
 };
 
@@ -31,8 +29,8 @@ const getJob = async (req, res) => {
 const updateJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findByIdAndUpdate(id, req.body, { new: true });
-  if (!job) throw new NotFound(`There is no job with id ${id}.`);
-  res.status(StatusCodes.OK).json({ msg: 'Job updated succesfully.' });
+
+  res.status(StatusCodes.OK).json({ msg: 'Job updated succesfully.',job });
 };
 
 // DELETE
@@ -40,8 +38,8 @@ const updateJob = async (req, res) => {
 const deleteJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findByIdAndDelete(id);
-  if (!job) throw new NotFound(`There is no job with id ${id}.`);
-  res.status(StatusCodes.OK).json({ msg: 'Job deleted succesfully.' });
+
+  res.status(StatusCodes.OK).json({ msg: 'Job deleted succesfully.', job });
 };
 
 export { createJob, getAllJobs, getJob, updateJob, deleteJob };
