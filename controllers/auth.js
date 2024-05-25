@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 
 import User from '../models/user.js';
-import { hashPassword, checkPassword } from '../utilities/index.js';
+import { hashPassword, checkPassword, createJWT } from '../utilities/index.js';
 
 import { Unauthorized } from '../error/index.js';
 
@@ -25,7 +25,9 @@ const login = async (req, res) => {
 
   if (!isCredentialsValid) throw new Unauthorized('Invalid credentials.');
 
-  res.status(StatusCodes.OK).json({ msg: 'Logged in successfully.' });
+  const token = createJWT({ uid: user._id, role: user.role });
+
+  res.status(StatusCodes.OK).json({ msg: 'Logged in successfully.', token });
 };
 
 export { register, login };
