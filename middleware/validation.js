@@ -79,3 +79,15 @@ export const validateUserInput = withValidationErrors([
     .notEmpty()
     .withMessage('Location field cannot be left empty.'),
 ]);
+
+export const validateUser = withValidationErrors([
+  body('email')
+    .notEmpty()
+    .withMessage('Email field cannot be left empty.')
+    .isEmail()
+    .withMessage('Invalid email format.'),
+
+  body('password')
+    .notEmpty()
+    .withMessage('Password field cannot be left empty.'),
+]);
