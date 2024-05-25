@@ -5,7 +5,9 @@ import 'express-async-errors';
 
 import { connectDB } from './database/connectDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
+
 import job from './router/job.js';
+import auth from './router/auth.js';
 
 // initilize server
 const server = express();
@@ -19,6 +21,7 @@ server.use(express.json());
 
 // routes
 server.use('/api/v1/jobs', job);
+server.use('/api/v1/auth', auth);
 
 // error handler
 server.use(errorHandler);
