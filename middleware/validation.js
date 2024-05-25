@@ -2,8 +2,11 @@ import mongoose from 'mongoose';
 import { body, param, validationResult } from 'express-validator';
 
 import Job from '../models/job.js';
+import User from '../models/user.js';
+
 import { BadRequest } from '../error/BadRequest.js';
 import { NotFound } from '../error/NotFound.js';
+
 import { JOB_STATUS, JOB_TYPE } from '../constant/index.js';
 
 const validation = (req, res, next) => {
@@ -46,4 +49,31 @@ export const validateID = withValidationErrors([
     const job = await Job.findById(value);
     if (!job) throw new Error(`There is no job with ID ${value}.`);
   }),
+]);
+
+export const validateUserInput = withValidationErrors([
+  body('name').notEmpty().withMessage('Name field cannot be left empty.'),
+  body('lastname').notEmpty().withMessage('Lastname field cannot be left empty.'),
+
+  body('email')
+    .notEmpty()
+    .withMessage('Email field cannot be left empty.')
+    .isEmail()
+    .withMessage('Invalid email format.')
+    .custom(async (email) => {
+      const user = await User.findOne({ email });
+      if (user) {
+        throw new Error('This email has already been registered.');
+      }
+    }),
+
+  body('password')
+    .notEmpty()
+    .withMessage('Password field cannot be left empty.')
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters.'),
+
+  body('location')
+    .notEmpty()
+    .withMessage('Location field cannot be left empty.'),
 ]);
