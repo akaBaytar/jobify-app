@@ -15,10 +15,10 @@ const validation = (req, res, next) => {
   if (!errors.isEmpty()) {
     const messages = errors.array().map((error) => error.msg);
 
-    if (messages[0].startsWith('Invalid')) {
-      throw new BadRequest(messages);
-    } else {
+    if (messages[0].startsWith('There')) {
       throw new NotFound(messages);
+    } else {
+      throw new BadRequest(messages);
     }
   }
 
@@ -53,7 +53,9 @@ export const validateID = withValidationErrors([
 
 export const validateUserInput = withValidationErrors([
   body('name').notEmpty().withMessage('Name field cannot be left empty.'),
-  body('lastname').notEmpty().withMessage('Lastname field cannot be left empty.'),
+  body('lastname')
+    .notEmpty()
+    .withMessage('Lastname field cannot be left empty.'),
 
   body('email')
     .notEmpty()
