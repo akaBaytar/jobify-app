@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import User from '../models/user.js';
 import { hashPassword, checkPassword } from '../utilities/index.js';
 
-import { Unauthorized } from '../error/Unauthorized.js';
+import { Unauthorized } from '../error/index.js';
 
 const register = async (req, res) => {
   const isFirstAccount = (await User.countDocuments()) === 0;

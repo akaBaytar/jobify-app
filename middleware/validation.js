@@ -4,8 +4,7 @@ import { body, param, validationResult } from 'express-validator';
 import Job from '../models/job.js';
 import User from '../models/user.js';
 
-import { BadRequest } from '../error/BadRequest.js';
-import { NotFound } from '../error/NotFound.js';
+import { BadRequest, NotFound } from '../error/index.js';
 
 import { JOB_STATUS, JOB_TYPE } from '../constant/index.js';
 
