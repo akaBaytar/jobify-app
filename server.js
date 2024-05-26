@@ -11,6 +11,7 @@ import { authenticateUser } from './middleware/authenticate.js';
 
 import job from './router/job.js';
 import auth from './router/auth.js';
+import user from './router/user.js';
 
 // initilize server
 const server = express();
@@ -21,11 +22,12 @@ connectDB();
 // middlewares
 if (process.env.NODE_ENV === 'development') server.use(morgan('dev'));
 server.use(express.json());
-server.use(cookieParser())
+server.use(cookieParser());
 
 // routes
-server.use('/api/v1/jobs', authenticateUser, job);
 server.use('/api/v1/auth', auth);
+server.use('/api/v1/jobs', authenticateUser, job);
+server.use('/api/v1/user', authenticateUser, user);
 
 // error handler
 server.use(errorHandler);

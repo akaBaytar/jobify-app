@@ -63,6 +63,7 @@ export const validateID = withValidationErrors([
 
 export const validateUserInput = withValidationErrors([
   body('name').notEmpty().withMessage('Name field cannot be left empty.'),
+
   body('lastname')
     .notEmpty()
     .withMessage('Lastname field cannot be left empty.'),
@@ -74,6 +75,7 @@ export const validateUserInput = withValidationErrors([
     .withMessage('Invalid email format.')
     .custom(async (email) => {
       const user = await User.findOne({ email });
+      
       if (user) {
         throw new Error('This email has already been registered.');
       }
@@ -100,4 +102,29 @@ export const validateUser = withValidationErrors([
   body('password')
     .notEmpty()
     .withMessage('Password field cannot be left empty.'),
+]);
+
+export const valideteUpdateUser = withValidationErrors([
+  body('name').notEmpty().withMessage('Name field cannot be left empty.'),
+
+  body('lastname')
+    .notEmpty()
+    .withMessage('Lastname field cannot be left empty.'),
+
+  body('email')
+    .notEmpty()
+    .withMessage('Email field cannot be left empty.')
+    .isEmail()
+    .withMessage('Invalid email format.')
+    .custom(async (email) => {
+      const user = await User.findOne({ email });
+
+      if (user && user._id.toString() !== req.user.uid) {
+        throw new Error('This email has already been registered.');
+      }
+    }),
+
+  body('location')
+    .notEmpty()
+    .withMessage('Location field cannot be left empty.'),
 ]);
