@@ -4,6 +4,7 @@ import Job from '../models/job.js';
 // POST
 // api/v1/jobs
 const createJob = async (req, res) => {
+  req.body.createdBy = req.user.uid;
   const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({ job });
 };
@@ -11,7 +12,7 @@ const createJob = async (req, res) => {
 // GET
 // api/v1/jobs
 const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({});
+  const jobs = await Job.find({ createdBy: req.user.uid });
   res.status(StatusCodes.OK).json({ jobs });
 };
 
@@ -30,7 +31,7 @@ const updateJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findByIdAndUpdate(id, req.body, { new: true });
 
-  res.status(StatusCodes.OK).json({ msg: 'Job updated succesfully.',job });
+  res.status(StatusCodes.OK).json({ msg: 'Job updated succesfully.', job });
 };
 
 // DELETE

@@ -4,7 +4,7 @@ import { body, param, validationResult } from 'express-validator';
 import Job from '../models/job.js';
 import User from '../models/user.js';
 
-import { BadRequest, NotFound } from '../error/index.js';
+import { BadRequest, NotFound, Forbidden } from '../error/index.js';
 
 import { JOB_STATUS, JOB_TYPE } from '../constant/index.js';
 
@@ -16,9 +16,13 @@ const validation = (req, res, next) => {
 
     if (messages[0].startsWith('There')) {
       throw new NotFound(messages);
-    } else {
-      throw new BadRequest(messages);
     }
+
+    if (messages[0].startsWith('Forbidden')) {
+      throw new Forbidden(messages);
+    }
+
+    throw new BadRequest(messages);
   }
 
   next();
@@ -41,12 +45,19 @@ export const validateInput = withValidationErrors([
 ]);
 
 export const validateID = withValidationErrors([
-  param('id').custom(async (value) => {
+  param('id').custom(async (value, { req }) => {
     const isValidID = mongoose.Types.ObjectId.isValid(value);
     if (!isValidID) throw new Error('Invalid MongoDB ID.');
 
     const job = await Job.findById(value);
     if (!job) throw new Error(`There is no job with ID ${value}.`);
+
+    const isAdmin = req.user.role === 'admin';
+    const isOwner = req.user.uid === job.createdBy.toString();
+
+    if (!isAdmin && !isOwner) {
+      throw new Error('Forbidden - Not Authorized.');
+    }
   }),
 ]);
 
