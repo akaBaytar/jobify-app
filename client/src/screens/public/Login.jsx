@@ -1,25 +1,30 @@
-import { Link } from 'react-router-dom';
+import { Link, Form, useNavigation } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import { Logo, Row, Button } from '../../components';
 
 const Login = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
+
   return (
     <Wrapper>
-      <form className='form'>
+      <Form method='post' className='form'>
         <Logo />
         <h4>Login</h4>
         <Row type={'text'} name={'email'} autoComplete='email' />
         <Row type={'password'} name={'password'} />
-        <Button type={'submit'} text={'Login'} />
+        <Button
+          type={'submit'}
+          text={isSubmitting ? 'Submitting...' : 'Login'}
+          disabled={isSubmitting}
+        />
         <p>
           Not a member yet?
-          <Link to={'/register'}>
-            Register here.
-          </Link>
+          <Link to={'/register'}>Register here.</Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 };

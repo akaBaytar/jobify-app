@@ -17,3 +17,18 @@ export const registerAction = async ({ request }) => {
     return error;
   }
 };
+
+export const loginAction = async ({ request }) => {
+  const formData = await request.formData();
+
+  const data = Object.fromEntries(formData);
+
+  try {
+    await fetch.post('/auth/login', data);
+    toast.success('Login successfully.');
+    return redirect('/dashboard');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};

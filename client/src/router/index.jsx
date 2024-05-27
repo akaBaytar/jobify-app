@@ -14,7 +14,7 @@ import {
   Admin,
 } from '../screens';
 
-import { registerAction } from '../functions';
+import { registerAction, loginAction } from '../functions/action';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+        action: loginAction,
       },
       {
         path: 'dashboard',
