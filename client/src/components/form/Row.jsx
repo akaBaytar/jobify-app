@@ -11,7 +11,7 @@ const Row = ({ type, name, label, autoComplete='none' }) => {
         id={name}
         name={name}
         autoComplete={autoComplete || name}
-        placeholder={`Enter your ${name}`}
+        placeholder={`Enter ${name}`}
         required
         className='form-input'
       />
