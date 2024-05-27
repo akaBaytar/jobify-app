@@ -14,7 +14,7 @@ import {
   Admin,
 } from '../screens';
 
-import { registerAction, loginAction } from '../functions/action';
+import { registerAction, loginAction, addJobAction } from '../functions/action';
 import { dashboardLoader } from '../functions/loader';
 
 const router = createBrowserRouter([
@@ -45,6 +45,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <AddJob />,
+            action: addJobAction,
           },
           {
             path: 'stats',
