@@ -28,17 +28,72 @@ const AddJob = () => {
             list={Object.values(JOB_TYPE)}
             defaultValue={JOB_TYPE.FULL_TIME}
           />
-          <Button
-            type={'submit'}
-            text={isSubmitting ? 'Submitting...' : 'Submit'}
-            disabled={isSubmitting}
-          />
+
+          <div className='button-container'>
+            <Button
+              type={'submit'}
+              text={isSubmitting ? 'Submitting...' : 'Submit'}
+              disabled={isSubmitting}
+            />
+          </div>
         </div>
       </Form>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.section`
+  border-radius: var(--border-radius);
+  width: 100%;
+  background: var(--background-secondary-color);
+  padding: 3rem 2rem 4rem;
+
+  h4 {
+    margin-block-end: 2rem;
+  }
+
+  .form {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .form-row {
+    margin-block-end: 0;
+  }
+
+  .form-center {
+    display: grid;
+    row-gap: 1rem;
+  }
+
+  @media (width >= 992px) {
+    .form-center {
+      position: relative;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      column-gap: 2rem;
+    }
+
+    .button-container {
+      height: 68px;
+      display: flex;
+      align-items: end;
+
+      & > button {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (width >= 1120px) {
+    .form-center {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+`;
 
 export default AddJob;
