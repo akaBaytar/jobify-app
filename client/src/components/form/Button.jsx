@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ type, text }) => {
+const Button = ({ type, text, disabled }) => {
   return (
-    <button type={type} className='button button-block'>
+    <button type={type} className='button button-block' disabled={disabled}>
       {text}
     </button>
   );
@@ -11,6 +11,7 @@ const Button = ({ type, text }) => {
 Button.propTypes = {
   type: PropTypes.string,
   text: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;
