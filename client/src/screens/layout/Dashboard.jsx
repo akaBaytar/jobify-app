@@ -1,24 +1,26 @@
 import { useState, createContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import styled from 'styled-components';
 
 import { Modal, Sidebar, Navbar } from '../../components';
-import  {checkDefaultTheme}  from '../../utilities/darkTheme';
+import { checkDefaultTheme } from '../../utilities/darkTheme';
+import fetch from '../../utilities/fetch';
 
 export const DashboardContext = createContext();
 
 const Dashboard = () => {
-  const user = { name: 'burak' };
+  const { user } = useLoaderData();
+
+  const navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [darkTheme, setDarkTheme] = useState(checkDefaultTheme());
 
   const toggleDarkTheme = () => {
     const dark = !darkTheme;
-
     setDarkTheme(dark);
-
     localStorage.setItem('darkTheme', dark);
   };
 
@@ -27,7 +29,9 @@ const Dashboard = () => {
   };
 
   const logout = async () => {
-    console.log('logout');
+    navigate('/');
+    await fetch.get('/auth/logout');
+    toast.info('Logged out successfully.');
   };
 
   return (
@@ -47,7 +51,7 @@ const Dashboard = () => {
           <div>
             <Navbar />
             <div className='dashboard-page'>
-              <Outlet />
+              <Outlet context={{ user }} />
             </div>
           </div>
         </main>
