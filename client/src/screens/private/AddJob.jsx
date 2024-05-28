@@ -69,7 +69,7 @@ const Wrapper = styled.section`
     row-gap: 1rem;
   }
 
-  @media (width >= 992px) {
+  @media (width >= 768px) {
     .form-center {
       position: relative;
       grid-template-columns: repeat(2, 1fr);

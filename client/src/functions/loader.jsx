@@ -27,9 +27,19 @@ export const editJobLoader = async ({ params }) => {
 
   try {
     const { data } = await fetch.get(`/jobs/${id}`);
-    return  data ;
+    return data;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return redirect('/dashboard/all-jobs');
+  }
+};
+
+export const adminLoader = async () => {
+  try {
+    const {data} = await fetch.get('/user/admin/app-stats');
+    return data
+  } catch (error) {
+    toast.error('You are not authorized.');
+    return redirect('/dashboard');
   }
 };
