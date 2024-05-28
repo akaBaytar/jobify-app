@@ -1,4 +1,5 @@
-export { default as Job } from './Job';
+export { default as Job } from './job/Job';
+export { default as Info } from './job/Info';
 
 export { default as Row } from './form/Row';
 export { default as Button } from './form/Button';

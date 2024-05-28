@@ -5,7 +5,6 @@ import { useJobsContext } from '../../hooks';
 
 const Jobs = () => {
   const { data } = useJobsContext();
-  console.log(data);
   const { jobs } = data;
 
   if (jobs.length === 0)
