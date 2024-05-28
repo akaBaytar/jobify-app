@@ -6,7 +6,6 @@ export { default as Home } from './layout/Home';
 
 export { default as AddJob } from './private/AddJob';
 export { default as AllJobs } from './private/AllJobs';
-export { default as DeleteJob } from './private/DeleteJob';
 export { default as EditJob } from './private/EditJob';
 export { default as Profile } from './private/Profile';
 export { default as Stats } from './private/Stats';

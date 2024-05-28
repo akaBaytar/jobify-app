@@ -20,6 +20,7 @@ import {
   loginAction,
   addJobAction,
   editJobAction,
+  deleteJobAction,
 } from '../functions/action';
 
 import {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
             element: <EditJob />,
             loader: editJobLoader,
             action: editJobAction,
+          },
+          {
+            path: 'delete-job/:id',
+            action: deleteJobAction
           },
         ],
       },

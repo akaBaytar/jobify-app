@@ -38,3 +38,22 @@ export const editJobAction = async ({ request, params }) => {
     return error;
   }
 };
+
+export const deleteJobAction = async ({ request, params }) => {
+  const formData = await request.formData();
+
+  const data = Object.fromEntries(formData);
+
+  try {
+    if (window.confirm('Are you sure you want to delete the job?')) {
+      await fetch.delete(`/jobs/${params.id}`, data);
+      toast.success(`Job deleted successfully.`);
+      return redirect(`/dashboard/all-jobs`);
+    } else {
+      return redirect(`/dashboard/all-jobs`);
+    }
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};
