@@ -30,15 +30,10 @@ const Admin = () => {
 
 const Wrapper = styled.section`
   display: grid;
-  row-gap: 2rem;
+  gap: 2rem;
 
   @media (width >= 768px) {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 1rem;
-  }
-
-  @media (width >= 1120px) {
-    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
