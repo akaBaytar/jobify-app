@@ -12,10 +12,21 @@ import {
   AllJobs,
   Profile,
   Admin,
+  EditJob,
 } from '../screens';
 
-import { registerAction, loginAction, addJobAction } from '../functions/action';
-import { dashboardLoader, allJobsLoader } from '../functions/loader';
+import {
+  registerAction,
+  loginAction,
+  addJobAction,
+  editJobAction,
+} from '../functions/action';
+
+import {
+  dashboardLoader,
+  allJobsLoader,
+  editJobLoader,
+} from '../functions/loader';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +74,12 @@ const router = createBrowserRouter([
           {
             path: 'admin',
             element: <Admin />,
+          },
+          {
+            path: 'edit-job/:id',
+            element: <EditJob />,
+            loader: editJobLoader,
+            action: editJobAction,
           },
         ],
       },

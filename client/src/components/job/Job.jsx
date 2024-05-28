@@ -17,7 +17,7 @@ import advancedFormat from 'dayjs/plugin/advancedFormat';
 
 day.extend(advancedFormat);
 
-const Job = ({ position, company, location, type, createdAt, status }) => {
+const Job = ({ _id, position, company, location, type, createdAt, status }) => {
   const date = day(createdAt).format('DD.MM.YYYY');
 
   return (
@@ -29,7 +29,7 @@ const Job = ({ position, company, location, type, createdAt, status }) => {
           <p>{company}</p>
         </div>
         <div className='actions'>
-          <Link className='button edit-button'>
+          <Link to={`../edit-job/${_id}`} className='button edit-button'>
             <FaEdit />
           </Link>
           <Form>
@@ -52,6 +52,7 @@ const Job = ({ position, company, location, type, createdAt, status }) => {
 };
 
 Job.propTypes = {
+  _id: PropTypes.string,
   position: PropTypes.string,
   company: PropTypes.string,
   location: PropTypes.string,

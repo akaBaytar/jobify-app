@@ -21,3 +21,15 @@ export const allJobsLoader = async () => {
     return error;
   }
 };
+
+export const editJobLoader = async ({ params }) => {
+  const { id } = params;
+
+  try {
+    const { data } = await fetch.get(`/jobs/${id}`);
+    return  data ;
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return redirect('/dashboard/all-jobs');
+  }
+};

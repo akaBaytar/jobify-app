@@ -23,3 +23,7 @@ const action =
 export const registerAction = action('/auth/register', 'Register', '/login');
 export const loginAction = action('/auth/login', 'Login', '/dashboard');
 export const addJobAction = action('/jobs', 'Job added', 'all-jobs');
+
+export const editJobAction = async () => {
+  return null;
+};

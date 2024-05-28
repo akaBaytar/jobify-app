@@ -28,7 +28,6 @@ const AddJob = () => {
             list={Object.values(JOB_TYPE)}
             defaultValue={JOB_TYPE.FULL_TIME}
           />
-
           <div className='button-container'>
             <Button
               type={'submit'}
