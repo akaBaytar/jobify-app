@@ -15,7 +15,7 @@ export const dashboardLoader = async () => {
 export const allJobsLoader = async () => {
   try {
     const { data } = await fetch.get('/jobs');
-    return data;
+    return { data };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;
