@@ -11,3 +11,5 @@ export { default as Sidebar } from './layout/Sidebar';
 
 export { default as Logout } from './container/Logout';
 export { default as Theme } from './container/Theme';
+export { default as Jobs } from './container/Jobs';
+export { default as Search } from './container/Search';
