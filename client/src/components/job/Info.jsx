@@ -15,6 +15,24 @@ Info.propTypes = {
   text: PropTypes.string,
 };
 
-const Wraper = styled.div``;
+const Wraper = styled.div`
+  display: flex;
+  align-items: center;
+
+  .job-icon {
+    font-size: 1rem;
+    margin-inline-end: 1rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: var(--text-secondary-color);
+    }
+  }
+
+  .job-text {
+    text-transform: capitalize;
+  }
+`;
 
 export default Info;
