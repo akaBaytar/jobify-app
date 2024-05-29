@@ -26,6 +26,14 @@ const User = new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
+
+  avatar: {
+    type: String,
+  },
+
+  avatarPublicID: {
+    type: String,
+  },
 });
 
 export default mongoose.model('User', User);
