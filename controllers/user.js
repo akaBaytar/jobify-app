@@ -1,3 +1,5 @@
+import { promises as fs } from 'fs';
+import cloudinary from 'cloudinary';
 import { StatusCodes } from 'http-status-codes';
 
 import Job from '../models/job.js';
@@ -19,7 +21,20 @@ const updateUser = async (req, res) => {
   const body = { ...req.body };
   delete body.password;
 
-  await User.findByIdAndUpdate(uid, body);
+  if (req.file) {
+    const response = await cloudinary.v2.uploader.upload(req.file.path);
+
+    await fs.unlink(req.file.path);
+
+    body.avatar = response.secure_url;
+    body.avatarPublicID = response.public_id;
+  }
+
+  const user = await User.findByIdAndUpdate(uid, body);
+
+  if (req.file && user.avatarPublicID) {
+    await cloudinary.v2.uploader.destroy(user.avatarPublicID);
+  }
 
   res.status(StatusCodes.OK).json({ msg: 'User updated successfully.' });
 };
