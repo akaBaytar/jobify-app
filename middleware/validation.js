@@ -75,7 +75,7 @@ export const validateUserInput = withValidationErrors([
     .withMessage('Invalid email format.')
     .custom(async (email) => {
       const user = await User.findOne({ email });
-      
+
       if (user) {
         throw new Error('This email has already been registered.');
       }
@@ -116,7 +116,7 @@ export const valideteUpdateUser = withValidationErrors([
     .withMessage('Email field cannot be left empty.')
     .isEmail()
     .withMessage('Invalid email format.')
-    .custom(async (email) => {
+    .custom(async (email, { req }) => {
       const user = await User.findOne({ email });
 
       if (user && user._id.toString() !== req.user.uid) {
