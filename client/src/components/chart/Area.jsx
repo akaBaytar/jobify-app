@@ -1,8 +1,11 @@
-const Area = () => {
-  
-  return (
-    <div>Area</div>
-  )
-}
+import PropTypes from 'prop-types';
 
-export default Area
+const Area = () => {
+  return <div>Area</div>;
+};
+
+Area.propTypes = {
+  data: PropTypes.array,
+};
+
+export default Area;

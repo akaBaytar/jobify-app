@@ -1,8 +1,13 @@
-const Bar = () => {
-  
-  return (
-    <div>Bar</div>
-  )
-}
+import PropTypes from 'prop-types';
 
-export default Bar
+const Bar = () => {
+  return <div>Bar</div>;
+};
+
+
+Bar.propTypes = {
+  data: PropTypes.array,
+};
+
+
+export default Bar;
