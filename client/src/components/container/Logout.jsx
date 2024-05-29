@@ -17,7 +17,11 @@ const Logout = () => {
         type='button'
         className='button logout-button'
         onClick={() => setShowLogout(!showLogout)}>
-        <LiaUser />
+        {user.avatar ? (
+          <img src={user.avatar} alt='avatar' className='image' />
+        ) : (
+          <LiaUser />
+        )}
         <span>{user?.name}</span>
         <RiArrowDropDownLine />
       </button>
