@@ -7,6 +7,7 @@ import path, { dirname } from 'path';
 
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+import cloudinary from 'cloudinary';
 
 import { connectDB } from './database/connectDB.js';
 
@@ -28,9 +29,16 @@ if (process.env.NODE_ENV === 'development') server.use(morgan('dev'));
 server.use(express.json());
 server.use(cookieParser());
 
+// file upload - cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 // public
 const __dirname = dirname(fileURLToPath(import.meta.url));
-server.use(express.static(path.resolve(__dirname, './public'))); 
+server.use(express.static(path.resolve(__dirname, './public')));
 
 // routes
 server.use('/api/v1/auth', auth);
