@@ -1,12 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import styled from 'styled-components';
 
-import {Logo} from '../../components';
-
+import fetch from '../../utilities/fetch';
+import { Logo } from '../../components';
 import ILLUSTRATION from '../../assets/svgs/main.svg';
 
 const Landing = () => {
+  const navigate = useNavigate();
+
+  const loginAsDemoUser = async () => {
+    const data = {
+      email: 'demo@mail.com',
+      password: 'testuser1234',
+    };
+
+    try {
+      await fetch.post('/auth/login', data);
+      toast.success('Logged in as a Test User successfully.');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+    }
+  };
   return (
     <Wrapper>
       <nav>
@@ -22,12 +39,17 @@ const Landing = () => {
             you&apos;re a recent graduate or a seasoned professional, our app
             helps you stay organized, focused, and proactive in your job hunt.
           </p>
-          <Link to={'/register'} className='button register'>
-            Register
-          </Link>
-          <Link to={'/login'} className='button'>
-            Login
-          </Link>
+          <div className='button-container'>
+            <Link to={'/register'} className='button'>
+              Register
+            </Link>
+            <Link to={'/login'} className='button'>
+              Login
+            </Link>
+            <Link onClick={loginAsDemoUser} className='button'>
+              Explore
+            </Link>
+          </div>
         </div>
         <img src={ILLUSTRATION} alt='Job hunt' className='image main-image' />
       </div>
@@ -68,16 +90,21 @@ const Wrapper = styled.section`
     max-width: 35em;
   }
 
-  .register {
-    margin-inline-end: 1rem;
-  }
-
   .main-image {
     display: none;
   }
 
+  .button-container {
+    display: flex;
+    gap: 1rem;
+  }
+
   .button {
-    padding: 0.75rem 1.5rem;
+    width: 6rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    text-transform: none;
   }
 
   @media (width >= 992px) {
