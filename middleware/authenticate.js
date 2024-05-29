@@ -1,4 +1,4 @@
-import { Unauthorized, Forbidden } from '../error/index.js';
+import { Unauthorized, Forbidden, BadRequest } from '../error/index.js';
 import { verifyJWT } from '../utilities/index.js';
 
 export const authenticateUser = async (req, res, next) => {
@@ -9,7 +9,9 @@ export const authenticateUser = async (req, res, next) => {
   try {
     const { uid, role } = verifyJWT(token);
 
-    req.user = { uid, role };
+    const demo = uid === '665726a02c9af233c9099632';
+
+    req.user = { uid, role, demo };
 
     next();
   } catch (error) {
@@ -25,4 +27,13 @@ export const authorizePermissions = (...roles) => {
 
     next();
   };
+};
+
+export const demo = (req, res, next) => {
+  if (req.user.demo)
+    throw new BadRequest(
+      'Demo user is for read only, please log in with your own account.'
+    );
+
+  next();
 };
