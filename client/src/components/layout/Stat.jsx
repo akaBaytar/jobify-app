@@ -25,6 +25,7 @@ const Wrapper = styled.article`
   padding: 2rem;
   background-color: var(--background-secondary-color);
   border-bottom: 5px solid ${({ color }) => color};
+  border-radius: var(--border-radius);
 
   header {
     display: flex;
