@@ -47,10 +47,18 @@ const Wrapper = styled.section`
 
   @media (width >= 768px) {
     grid-template-columns: repeat(2, 1fr);
+
+    article:nth-child(1) {
+      grid-column: 1/3;
+    }
   }
 
   @media (width >= 1200px) {
     grid-template-columns: repeat(3, 1fr);
+
+    article:nth-child(1) {
+      grid-column: auto;
+    }
   }
 `;
 
