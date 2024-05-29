@@ -36,10 +36,20 @@ export const editJobLoader = async ({ params }) => {
 
 export const adminLoader = async () => {
   try {
-    const {data} = await fetch.get('/user/admin/app-stats');
-    return data
+    const { data } = await fetch.get('/user/admin/app-stats');
+    return data;
   } catch (error) {
     toast.error('You are not authorized.');
     return redirect('/dashboard');
+  }
+};
+
+export const statsLoader = async () => {
+  try {
+    const { data } = await fetch.get('/jobs/stats');
+    return data;
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
   }
 };
