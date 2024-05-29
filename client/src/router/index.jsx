@@ -21,6 +21,7 @@ import {
   addJobAction,
   editJobAction,
   deleteJobAction,
+  profileAction,
 } from '../functions/action';
 
 import {
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <Profile />,
+            action: profileAction,
           },
           {
             path: 'admin',
