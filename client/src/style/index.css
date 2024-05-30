@@ -318,3 +318,19 @@ button:disabled {
   background: #ffeeee;
   color: #d66a6a;
 }
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+body.dark-theme::-webkit-scrollbar-track {
+  background: #2f2f2f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+}
