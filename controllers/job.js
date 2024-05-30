@@ -16,7 +16,7 @@ const createJob = async (req, res) => {
 // GET
 // api/v1/jobs
 const getAllJobs = async (req, res) => {
-  const { search } = req.query;
+  const { search, status, type } = req.query;
 
   const query = {
     createdBy: req.user.uid,
@@ -30,7 +30,12 @@ const getAllJobs = async (req, res) => {
     ];
   }
 
+  if (type && type !== 'all') query.type = type;
+
+  if (status && status !== 'all') query.status = status;
+
   const jobs = await Job.find(query);
+
   res.status(StatusCodes.OK).json({ count: jobs.length, jobs });
 };
 
