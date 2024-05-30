@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Row, Select } from '../../components';
 import { JOB_SORT_BY, JOB_STATUS, JOB_TYPE } from '../../../../constant';
 import { useJobsContext } from '../../hooks';
+import { debounce } from '../../helpers/debounce';
 
 const Search = () => {
   const submit = useSubmit();
@@ -23,9 +24,7 @@ const Search = () => {
             placeholder={'Search...'}
             required={false}
             defaultValue={search}
-            onChange={(e) => {
-              submit(e.currentTarget.form);
-            }}
+            onChange={debounce((form) => submit(form))}
           />
           <Select
             label={'job status'}
