@@ -29,10 +29,10 @@ const Job = ({ _id, position, company, location, type, createdAt, status }) => {
           <p>{company}</p>
         </div>
         <div className='actions'>
-          <Link to={`../edit-job/${_id}`} className='button edit-button'>
+          <Link to={`./edit-job/${_id}`} className='button edit-button'>
             <FaEdit />
           </Link>
-          <Form method='post' action={`../delete-job/${_id}`}>
+          <Form method='post' action={`./delete-job/${_id}`}>
             <button type='submit' className='button delete-button'>
               <FaTrash />
             </button>

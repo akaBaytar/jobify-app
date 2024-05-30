@@ -59,18 +59,18 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
+            element: <AllJobs />,
+            loader: allJobsLoader,
+          },
+          {
             element: <AddJob />,
+            path: 'add-job',
             action: addJobAction,
           },
           {
             path: 'stats',
             element: <Stats />,
             loader: statsLoader,
-          },
-          {
-            path: 'all-jobs',
-            element: <AllJobs />,
-            loader: allJobsLoader,
           },
           {
             path: 'profile',

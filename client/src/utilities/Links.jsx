@@ -5,14 +5,14 @@ import { MdQueryStats, MdAdminPanelSettings } from 'react-icons/md';
 
 export const LINKS = [
   {
-    text: 'Add Job',
+    text: 'All Jobs',
     path: '.',
-    icon: <FaWpforms />,
+    icon: <MdQueryStats />,
   },
   {
-    text: 'All Jobs',
-    path: 'all-jobs',
-    icon: <MdQueryStats />,
+    text: 'Add Job',
+    path: 'add-job',
+    icon: <FaWpforms />,
   },
   {
     text: 'Stats',
