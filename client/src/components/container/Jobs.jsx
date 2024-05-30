@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-import { Job } from '../../components';
+import { Job, Pagination } from '../../components';
 import { useJobsContext } from '../../hooks';
 
 const Jobs = () => {
   const { data } = useJobsContext();
-  const { jobs } = data;
+
+  const { jobs, totalJobs, totalPages } = data;
 
   if (jobs.length === 0)
     return (
@@ -16,11 +17,15 @@ const Jobs = () => {
 
   return (
     <Wrapper>
+      <h4>
+        {totalJobs} job{jobs.length > 1 && 's'} found
+      </h4>
       <div className='jobs'>
         {jobs.map((job) => (
           <Job key={job._id} {...job} />
         ))}
       </div>
+      {totalPages > 1 && <Pagination />}
     </Wrapper>
   );
 };
@@ -32,7 +37,7 @@ const Wrapper = styled.section`
     text-transform: none;
   }
 
-  & > h5 {
+  & > h4 {
     font-weight: 600;
     margin-block-end: 1.5rem;
   }

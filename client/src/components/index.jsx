@@ -15,6 +15,7 @@ export { default as Logo } from './layout/Logo';
 export { default as Modal } from './layout/Modal';
 export { default as Sidebar } from './layout/Sidebar';
 export { default as Stat } from './layout/Stat';
+export { default as Pagination } from './layout/Pagination';
 
 export { default as Logout } from './container/Logout';
 export { default as Theme } from './container/Theme';
