@@ -16,8 +16,22 @@ const createJob = async (req, res) => {
 // GET
 // api/v1/jobs
 const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.uid });
-  res.status(StatusCodes.OK).json({ jobs });
+  const { search } = req.query;
+
+  const query = {
+    createdBy: req.user.uid,
+  };
+
+  if (search) {
+    query.$or = [
+      { company: { $regex: search, $options: 'i' } },
+      { position: { $regex: search, $options: 'i' } },
+      { location: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  const jobs = await Job.find(query);
+  res.status(StatusCodes.OK).json({ count: jobs.length, jobs });
 };
 
 // GET
