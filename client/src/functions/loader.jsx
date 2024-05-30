@@ -1,7 +1,7 @@
 import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import fetch from '../utilities/fetch';
+import fetch from '../helpers/fetch';
 
 export const dashboardLoader = async () => {
   try {

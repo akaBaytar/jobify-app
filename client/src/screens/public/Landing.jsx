@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import styled from 'styled-components';
 
-import fetch from '../../utilities/fetch';
+import fetch from '../../helpers/fetch';
 import { Logo } from '../../components';
 import ILLUSTRATION from '../../assets/svgs/main.svg';
 

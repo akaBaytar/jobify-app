@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { Modal, Sidebar, Navbar } from '../../components';
 import { checkDefaultTheme } from '../../utilities/darkTheme';
-import fetch from '../../utilities/fetch';
+import fetch from '../../helpers/fetch';
 
 export const DashboardContext = createContext();
 
