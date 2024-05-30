@@ -6,10 +6,10 @@ import { Search, Jobs } from '../../components';
 export const JobsContext = createContext();
 
 const AllJobs = () => {
-  const { data } = useLoaderData();
+  const { data, searchValues } = useLoaderData();
 
   return (
-    <JobsContext.Provider value={{ data }}>
+    <JobsContext.Provider value={{ data, searchValues }}>
       <Search />
       <Jobs />
     </JobsContext.Provider>

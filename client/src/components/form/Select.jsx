@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Select = ({ name, label, list, defaultValue = '' }) => {
+const Select = ({ name, label, list, defaultValue = '', onChange }) => {
   return (
     <div className='form-row'>
       <label htmlFor={name} className='form-label'>
@@ -9,6 +9,7 @@ const Select = ({ name, label, list, defaultValue = '' }) => {
       <select
         name={name}
         id={name}
+        onChange={onChange}
         defaultValue={defaultValue}
         className='form-input'>
         {list?.map((status, index) => (
@@ -24,5 +25,6 @@ Select.propTypes = {
   label: PropTypes.string,
   list: PropTypes.array,
   defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
 };
 export default Select;
