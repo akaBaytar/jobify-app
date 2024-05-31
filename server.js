@@ -8,6 +8,8 @@ import path, { dirname } from 'path';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cloudinary from 'cloudinary';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
 
 import { connectDB } from './database/connectDB.js';
 
@@ -28,6 +30,8 @@ connectDB();
 if (process.env.NODE_ENV === 'development') server.use(morgan('dev'));
 server.use(express.json());
 server.use(cookieParser());
+server.use(helmet());
+server.use(mongoSanitize());
 
 // file upload - cloudinary
 cloudinary.config({
