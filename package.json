@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "setup": "npm i && cd client && npm i",
+    "build": "npm i && cd client && npm i && npm run build",
     "api": "nodemon --env-file=.env server.js",
     "client": "cd client && npm run dev",
     "populate": "cd mock && node populateDB.js",

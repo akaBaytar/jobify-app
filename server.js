@@ -42,7 +42,11 @@ cloudinary.config({
 
 // public
 const __dirname = dirname(fileURLToPath(import.meta.url));
-server.use(express.static(path.resolve(__dirname, './public')));
+server.use(express.static(path.resolve(__dirname, './client/dist')));
+
+server.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
+});
 
 // routes
 server.use('/api/v1/auth', auth);
@@ -53,5 +57,5 @@ server.use('/api/v1/user', authenticateUser, user);
 server.use(errorHandler);
 
 // setup port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5100;
 server.listen(port, () => console.log(`Server is running on port ${port}.`));
