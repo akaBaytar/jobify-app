@@ -7,7 +7,7 @@
   "scripts": {
     "setup": "npm i && cd client && npm i",
     "build": "npm i && cd client && npm i && npm run build",
-    "api": "nodemon --env-file=.env server.js",
+    "start": "nodemon --env-file=.env server.js",
     "client": "cd client && npm run dev",
     "populate": "cd mock && node populateDB.js",
     "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run client\""
