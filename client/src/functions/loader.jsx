@@ -2,6 +2,7 @@ import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import fetch from '../helpers/fetch';
+import { statsQuery } from './query';
 
 export const dashboardLoader = async () => {
   try {
@@ -34,7 +35,7 @@ export const editJobLoader = async ({ params }) => {
     return data;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
-    return redirect('/dashboard/all-jobs');
+    return redirect('/dashboard');
   }
 };
 
@@ -48,12 +49,6 @@ export const adminLoader = async () => {
   }
 };
 
-export const statsLoader = async () => {
-  try {
-    const { data } = await fetch.get('/jobs/stats');
-    return data;
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return error;
-  }
+export const statsLoader = (queryClient) => async () => {
+  return await queryClient.ensureQueryData(statsQuery);
 };

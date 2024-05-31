@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import {queryClient} from '../helpers/query'
+
 import {
   Home,
   Landing,
@@ -70,7 +72,7 @@ const router = createBrowserRouter([
           {
             path: 'stats',
             element: <Stats />,
-            loader: statsLoader,
+            loader: statsLoader(queryClient),
           },
           {
             path: 'profile',
