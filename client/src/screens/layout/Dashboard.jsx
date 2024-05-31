@@ -1,17 +1,19 @@
 import { useState, createContext } from 'react';
-import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import styled from 'styled-components';
 
+import fetch from '../../helpers/fetch';
+import { userQuery } from '../../functions/query';
 import { Modal, Sidebar, Navbar } from '../../components';
 import { checkDefaultTheme } from '../../utilities/darkTheme';
-import fetch from '../../helpers/fetch';
 
 export const DashboardContext = createContext();
 
 const Dashboard = () => {
-  const { user } = useLoaderData();
+  const { user } = useQuery(userQuery).data;
 
   const navigate = useNavigate();
 

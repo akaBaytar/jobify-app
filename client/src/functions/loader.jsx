@@ -2,12 +2,11 @@ import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import fetch from '../helpers/fetch';
-import { statsQuery } from './query';
+import { statsQuery,userQuery } from './query';
 
-export const dashboardLoader = async () => {
+export const dashboardLoader = (queryClient) => async () => {
   try {
-    const { data } = await fetch.get('/user/me');
-    return data;
+    return await queryClient.ensureQueryData(userQuery);
   } catch (error) {
     return redirect('/');
   }

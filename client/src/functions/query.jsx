@@ -7,3 +7,11 @@ export const statsQuery = {
     return response.data;
   },
 };
+
+export const userQuery = {
+  queryKey: ['user'],
+  queryFn: async () => {
+    const response = await fetch.get('/user/me');
+    return response.data;
+  },
+};

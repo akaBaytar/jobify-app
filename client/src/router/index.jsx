@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import {queryClient} from '../helpers/query'
+import { queryClient } from '../helpers/query';
 
 import {
   Home,
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <Dashboard />,
-        loader: dashboardLoader,
+        loader: dashboardLoader(queryClient),
         children: [
           {
             index: true,
