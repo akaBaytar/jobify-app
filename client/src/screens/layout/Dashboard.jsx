@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import fetch from '../../helpers/fetch';
 import { userQuery } from '../../functions/query';
+import { queryClient } from '../../helpers/query';
 import { Modal, Sidebar, Navbar } from '../../components';
 import { checkDefaultTheme } from '../../utilities/darkTheme';
 
@@ -33,6 +34,7 @@ const Dashboard = () => {
   const logout = async () => {
     navigate('/');
     await fetch.get('/auth/logout');
+    queryClient.invalidateQueries();
     toast.info('Logged out successfully.');
   };
 
