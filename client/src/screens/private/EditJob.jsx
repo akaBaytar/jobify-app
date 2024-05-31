@@ -1,12 +1,15 @@
 import { useLoaderData, Form, useNavigation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 import styled from 'styled-components';
 
+import { jobQuery } from '../../functions/query';
 import { Row, Select, Button } from '../../components';
 import { JOB_STATUS, JOB_TYPE } from '../../../../constant';
 
 const EditJob = () => {
-  const { job } = useLoaderData();
+  const id = useLoaderData();
+  const {data: { job } } = useQuery(jobQuery(id));
 
   const isSubmitting = useNavigation().state === 'submitting';
 
