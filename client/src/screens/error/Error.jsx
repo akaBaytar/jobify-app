@@ -25,7 +25,9 @@ const Error = () => {
   return (
     <Wrapper>
       <div>
-        <h3>An Error Occurred.</h3>
+        <h1>:(</h1>
+        <h3>An Error Occurred</h3>
+        <p>{error.message}</p>
       </div>
     </Wrapper>
   );
@@ -44,6 +46,10 @@ const Wrapper = styled.main`
     display: block;
     margin-block-end: 2rem;
     margin-block-start: -3rem;
+  }
+
+  h1 {
+    margin-block-end: 1.5rem;
   }
 
   h3 {
