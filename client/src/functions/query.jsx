@@ -18,6 +18,15 @@ export const userQuery = {
   },
 };
 
+export const adminQuery = {
+  queryKey: ['admin'],
+  queryFn: async () => {
+    const { data } = await fetch.get('/user/admin/app-stats');
+    
+    return data;
+  },
+};
+
 export const jobsQuery = (params) => {
   const { search, status, type, sort, page } = params;
 
@@ -44,7 +53,7 @@ export const jobQuery = (id) => {
     queryKey: ['job', id],
     queryFn: async () => {
       const { data } = await fetch.get(`/jobs/${id}`);
-      
+
       return data;
     },
   };

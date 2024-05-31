@@ -1,8 +1,13 @@
 import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import fetch from '../helpers/fetch';
-import { jobQuery, jobsQuery, statsQuery, userQuery } from './query';
+import {
+  adminQuery,
+  jobQuery,
+  jobsQuery,
+  statsQuery,
+  userQuery,
+} from './query';
 
 export const dashboardLoader = (queryClient) => async () => {
   try {
@@ -12,10 +17,9 @@ export const dashboardLoader = (queryClient) => async () => {
   }
 };
 
-export const adminLoader = async () => {
+export const adminLoader = (queryClient) => async () => {
   try {
-    const { data } = await fetch.get('/user/admin/app-stats');
-    return data;
+    return await queryClient.ensureQueryData(adminQuery);
   } catch (error) {
     toast.error('You are not authorized.');
     return redirect('/dashboard');

@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import { useQuery } from '@tanstack/react-query';
 
-import { useLoaderData } from 'react-router-dom';
 import { FaUsers, FaSuitcase } from 'react-icons/fa6';
 
-
 import { Stat } from '../../components';
+import { adminQuery } from '../../functions/query';
 
 const Admin = () => {
-  const { users, jobs } = useLoaderData();
+  const { data } = useQuery(adminQuery);
+
+  const { users, jobs } = data;
 
   return (
     <Wrapper>
