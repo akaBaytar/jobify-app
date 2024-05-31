@@ -1,3 +1,7 @@
+// env variables
+import dotenv from 'dotenv';
+dotenv.config();
+
 // all imports
 import express from 'express';
 import 'express-async-errors';
