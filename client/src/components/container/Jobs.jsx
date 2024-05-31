@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 
-import { Job, Pagination } from '../../components';
+import { useNavigation } from 'react-router-dom';
+
+import { Job, Loading, Pagination } from '../../components';
 import { useJobsContext } from '../../hooks';
 
 const Jobs = () => {
   const { data } = useJobsContext();
-
   const { jobs, totalJobs, totalPages } = data;
+
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
+
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <Loading />
+      </Wrapper>
+    );
+  }
 
   if (jobs.length === 0)
     return (
