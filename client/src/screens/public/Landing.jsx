@@ -19,7 +19,7 @@ const Landing = () => {
     try {
       await fetch.post('/auth/login', data);
       toast.success('Logged in as a Test User successfully.');
-      navigate('/dashboard');
+      navigate('dashboard');
     } catch (error) {
       toast.error(error?.response?.data?.msg);
     }

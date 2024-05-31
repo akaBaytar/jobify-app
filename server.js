@@ -44,14 +44,14 @@ cloudinary.config({
 const __dirname = dirname(fileURLToPath(import.meta.url));
 server.use(express.static(path.resolve(__dirname, './client/dist')));
 
-server.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
-});
-
 // routes
 server.use('/api/v1/auth', auth);
 server.use('/api/v1/jobs', authenticateUser, job);
 server.use('/api/v1/user', authenticateUser, user);
+
+server.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/dist/', 'index.html'));
+});
 
 // error handler
 server.use(errorHandler);
