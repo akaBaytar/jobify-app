@@ -15,7 +15,6 @@ const Navbar = () => {
         </button>
         <div>
           <Logo />
-          <h4>Dashboard</h4>
         </div>
         <div className='button-container'>
           <Theme/>
@@ -33,6 +32,7 @@ const Wrapper = styled.nav`
   justify-content: center;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
   background: var(--background-secondary-color);
+  z-index: 1;
 
   .nav-center {
     display: flex;
@@ -49,10 +49,6 @@ const Wrapper = styled.nav`
     cursor: pointer;
     display: flex;
     align-items: center;
-  }
-
-  h4 {
-    display: none;
   }
 
   .button-container {
@@ -81,6 +77,8 @@ const Wrapper = styled.nav`
 
     h4 {
       display: block;
+      font-size: 1.5rem;
+      opacity: 0.5;
     }
   }
 `;
